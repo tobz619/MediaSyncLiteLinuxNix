@@ -1,3 +1,3 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
-pkgs.callPackage ./mediasynclite.nix {}
+pkgs.callPackage ./mediasynclite.nix { }

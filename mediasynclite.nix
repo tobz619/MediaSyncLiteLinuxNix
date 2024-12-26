@@ -19,29 +19,30 @@ stdenv.mkDerivation rec {
     owner = "iBroadcastMediaServices";
     repo = "MediaSyncLiteLinux";
     rev = version;
-    hash = "sha256-KIXt7fZ6WAy2z704OovmTU47meZYQenNIUY2/JnY83w=";
-    };
+    hash = "sha256-ToSkR6tPJMBCcj1NUBAywKjCAPlpmh+ngIopFrT2PIA=";
+  };
 
   buildInputs = [
-   curl
-   openssl.dev
-   jansson
+    curl
+    openssl.dev
+    jansson
+    gtk3
+    glib
   ];
 
   strictDeps = true;
 
   nativeBuildInputs = [
-   gtk3
-   glib
-   gsettings-desktop-schemas
-   pkg-config
-   wrapGAppsHook3
+    gsettings-desktop-schemas
+    pkg-config
+    wrapGAppsHook3
   ];
 
   makeFlags = [ "PREFIX=$(out)" ];
 
   postPatch = ''
-    substitute ./src/ibmsl.c ./src/ibmsl.c --subst-var out
+   mkdir -p $out/share
+   cp -r share $out/share
   '';
 
   meta = with lib; {
